@@ -9,11 +9,11 @@ def calcular_subtotal(quantidades, dicionario_produtos):
             subtotais[produto] = quantidades[produto] * preco
     return subtotais
 
-# Função para gerar o PDF da nota fiscal
+# Função para mostrar a nota fiscal
 def mostrar_tela(quantidades, subtotais, total):
     
     st.write("TicTacToy - Nota de Compras")
-    st.write("====================================================================")
+    st.write("============================================")
     
     for produto, quantidade in quantidades.items():
         if quantidade > 0:
@@ -21,18 +21,18 @@ def mostrar_tela(quantidades, subtotais, total):
             subtotal = subtotais[produto]
             st.write(f"{produto} x{quantidade} - {preco_unitario:.2f} reais cada (Subtotal: {subtotal:.2f} reais)")
 
-    st.write("====================================================================")
+    st.write("============================================")
     st.write(f"Total da compra: R${total:.2f}")
 
-    data_hora_atual = datetime.datetime.now()
-    formato_personalizado = "%d/%m/%Y %H:%M:%S"
-    data_hora_formatada = data_hora_atual.strftime(formato_personalizado)
+    diferenca = timedelta(hours=-3)
+    fuso_horario = timezone(diferenca)
+    data_e_hora_brasilia = data_e_hora_atuais.astimezone(fuso_horario)
+    data_e_hora_brasilia_em_texto = data_e_hora_sao_paulo.strftime(‘%d/%m/%Y %H:%M’)
 
-    st.write(f"Data/Hora: {data_hora_formatada}")
-
+    st.write(f"Data/Hora: {data_e_hora_brasilia_em_texto}")
 
 # Configurações iniciais
-st.set_page_config(page_title='TicTacToy - Gerar Nota Fiscal')
+st.set_page_config(page_title='TicTacToy - Gerar Nota de Compras')
 st.title('TicTacToy - Gerar Nota de Compras')
 
 dicionario_produtos = {'Caneta Carimbo Roller': 6.50, 'Marca texto duas pontas neon': 4.00, 'Caneta em gel colorida': 3.00, 'Marca texto com glitter': 5.00, 'Marca texto apagável': 6.50, 'Canetinha com carimbo': 6.00, 'Marca texto com ponta estrela': 5.00, 'Marca texto com ponta carimbo': 5.00, 'Marca texto bonecas 5 cores': 15.00, 'Marca texto polvo 5 cores': 15.00, 'Marca texto sorvete 5 cores': 15.00, 'Marca texto coração 6 cores': 17.00, 'Carimbos fofos': 3.00, 'Tesoura escolar': 6.00, 'Caderno Popit colorido': 35.00, 'Caderno Popit dino': 5.00, 'Marmita com borrachas de frutas 5 unidades': 20.00, 'Borracha batata frita 8 unidades': 25.00, 'Borracha chicken 8 unidades': 25.00, 'Borracha pão de forma': 4.50, 'Borracha macarron': 4.50, 'Apontador e borracha de fruta': 6.00, 'Fita corretiva 16m': 7.00, 'Cola dupla face em fita': 12.00, 'Caneta apagável astronauta': 6.00, 'Caneta com spray': 3.00, 'Caneta gel coração': 5.00, 'Caneta gel astronauta': 5.00, 'Caneta gel stitch': 5.00, 'Caneta gel cacto': 5.00, 'Caneta gel coelho': 5.00, 'Caneta gel Super Mario': 5.00, 'Caneta gel heróis': 5.00, 'Caneta gel Mickey e Minnie': 5.00, 'Caneta gel seringa': 5.00, 'Caneta gel sereia': 5.00, 'Caneta diamante': 8.00, 'Caneta mágica apagável': 8.00, 'Caderneta sereia luxo': 20.00, 'Diário astronauta': 30.00, 'Planner semanal gatinhos': 20.00, 'Planner semanal patinhas': 20.00, 'Clips cactos 6 unidades': 10.00, 'Clips diamantes 6 unidades': 10.00, 'Clips gatinhos 6 unidades': 10.00, 'Clips coração 6 unidades': 10.00, 'Jogo tabuada da multiplicação em madeira': 40.00, 'Jogo numerais e geometria em madeira': 40.00, 'Quebra-cabeça madeira ônibus': 20.00, 'Quebra-cabeça madeira alimentos': 35.00, 'Quebra-cabeça madeira dino': 20.00, 'Estojo de pintura carros': 15.00, 'Jogo UNO': 10.00, 'Canetinha magnética para lousa': 2.00, 'Refil caneta gel': 1.50}
