@@ -24,8 +24,8 @@ def mostrar_tela(quantidades, subtotais, total):
     st.write("============================================")
     st.write(f"Total da compra: R${total:.2f}")
 
-    diferenca = timedelta(hours=-3)
-    fuso_horario = timezone(diferenca)
+    diferenca = datetime.timedelta(hours=-3)
+    fuso_horario = datetime.timezone(diferenca)
     data_e_hora_brasilia = data_e_hora_atuais.astimezone(fuso_horario)
     data_e_hora_brasilia_em_texto = data_e_hora_sao_paulo.strftime("%d/%m/%Y %H:%M")
 
